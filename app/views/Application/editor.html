@@ -51,9 +51,17 @@
                 }
             },
 
+            selectPreviousNote : function() {
+                var idx = this.index() - 1;
+                var noteViewModel = this.notes()[idx];
+                if (!noteViewModel) noteViewModel = this.notes()[this.notes().length-1];
+                if (noteViewModel) noteViewModel.activate();
+            },
+
             selectNextNote : function() {
                 var idx = this.index() + 1;
                 var noteViewModel = this.notes()[idx];
+                if (!noteViewModel) noteViewModel = this.notes()[0];
                 if (noteViewModel) noteViewModel.activate();
             },
 
@@ -68,7 +76,6 @@
 
             focusInEditor: function(e) {
                 e.preventDefault();
-                app.notify("asd");
                 if (editor) editor.focus();
                 return true;
             },
@@ -98,7 +105,13 @@
                     return true;
                 }
 
-                if (e.shiftKey && e.which == 49) {
+                 if (e.which == 188) {
+                    e.preventDefault();
+                    this.selectPreviousNote();
+                    return true;
+                }
+
+                if (e.which == 190) {
                     e.preventDefault();
                     this.selectNextNote();
                     return true;
@@ -111,7 +124,7 @@
                 }
 
                 if (e.which == 84) {
-                   viewModel.createNewNote('s');
+                   viewModel.createNewNote('');
                    e.preventDefault();
                    return false;
                 }
@@ -140,13 +153,11 @@
         }, viewModel);
 
         viewModel.title = ko.dependentObservable(function() {
-            var currentNote = this.currentNote();
+            return "ab3" + (this.currentNote() ? " | " + app.preview(this.currentNote().content(), true) : "");
+        }, viewModel);
 
-            if (!currentNote) {
-                return "ab3";
-            }
-
-            return "ab3 | " + app.preview(currentNote.content());
+        viewModel.unescapedTitle = ko.dependentObservable(function() {
+             return "ab3" + (this.currentNote() ? " | " + app.preview(this.currentNote().content(), false) : "");
         }, viewModel);
 
         viewModel.currentContent = ko.dependentObservable({
@@ -248,7 +259,7 @@
         var editor = CodeMirror.fromTextArea(document.getElementById("editorArea"), {
             lineNumbers: false,
             matchBrackets: true,
-            mode: "text",
+            mode: "text/plain",
             onChange: function(editor) {
                 viewModel.updateContentFromEditor(editor);
             }
@@ -262,10 +273,7 @@
     <li class="add-note-tool note-tab" data-bind="click: addNoteHandler">+</li>
 </ul>
 
-<div class="paper" data-bind="event: { keydown : keydownHandler }">
-    <!--
-	<pre class="note-content" contentEditable="true" spellcheck="false" data-bind="htmlValue: currentContent, event: { keydown : keydownHandler }"></pre>
-    -->
+<div class="paper">
     <textarea id="editorArea" data-bind="value: currentContent"></textarea>
     <div class="tools">
 		<a href="#save" title="Save in local storage" data-bind="click: saveCurrentDocument">Save</a>

@@ -14,7 +14,7 @@ var app =  (function() {
 			console.log(str);
 	};
 
-	app.preview = function(text) {
+	app.preview = function(text, escape) {
 		if (!text || text.length < 1) {
 			return "Empty";
 		}
@@ -27,8 +27,14 @@ var app =  (function() {
                 break;
             }
         }
-        // Html escaping hack + white space truncation
-		var title = $('<span></span>').text($.trim(lines[firstNonEmptyLineIndex])).html().replace(/\s+/g," ");
+        var title = $.trim(lines[firstNonEmptyLineIndex]);
+        // Html escaping hack
+		if (escape) {
+            title = $('<span></span>').text(title).html();
+        }
+
+        // White space truncation
+        title = title.replace(/\s+/g," ");
 
 		if (title.length > 12) {
 		  return title.substring(0,11) + '..';
