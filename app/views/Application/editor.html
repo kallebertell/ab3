@@ -1,0 +1,316 @@
+#{extends 'main.html' /} #{set title:'fnord' /}
+
+
+<script type="text/javascript">
+
+    $(function() {
+        // ----------------------------------------------------------
+        // Setup View Models
+
+        var viewModel = {
+            notes : ko.observableArray(),
+            index : ko.observable(),
+
+
+            addViewNote : function (key, content) {
+                var note = new NoteViewModel(key, content);
+                viewModel.notes.push(note);
+                viewModel[key] = note;
+
+                note.activate();
+            },
+
+            createNewNote : function (content) {
+                var key = app.addNote(content);
+                this.addViewNote(key, content);
+            },
+
+            removeNote : function(key) {
+                var idx = viewModel.index();
+                var noteIndex = app.getIndex(key);
+                var currentNoteKey = viewModel.currentNote().key;
+                viewModel.notes.splice(noteIndex, 1);
+                app.removeNote(key);
+
+                if (currentNoteKey == key) {
+                  this.selectNote(app.getNoteKeyByIndex(0));
+                } else {
+                  this.selectNote(currentNoteKey);
+                }
+            },
+
+            selectNote : function(key) {
+                this.deselectNotes();
+                this.index(app.getIndex(key));
+                if (editor) editor.setValue(this.currentContent());
+            },
+
+            deselectNotes : function() {
+                for (var idx in viewModel.notes()) {
+                    viewModel.notes()[idx].selected(false);
+                }
+            },
+
+            selectNextNote : function() {
+                var idx = this.index() + 1;
+                var noteViewModel = notes()[idx];
+                if (noteViewModel) noteViewModel.activate();
+            },
+
+            updateContentFromEditor: function(editor) {
+                editor.save();
+                viewModel.currentContent(editor.getValue());
+                return false;
+            },
+
+            // -------------------------------
+            // Event Handlers
+
+            focusInEditor: function(e) {
+                e.preventDefault();
+                app.notify("asd");
+                if (editor) editor.focus();
+                return true;
+            },
+
+            saveCurrentDocument: function(e) {
+                e.preventDefault();
+                this.currentNote().save();
+                return true;
+            },
+
+            publishCurrentDocument: function(e) {
+                e.preventDefault();
+                publishCurrentNote();
+                return true;
+            },
+
+            addNoteHandler : function(e) {
+                e.preventDefault();
+                this.createNewNote(('' + new Date()).substring(16, 24));
+                return true;
+            },
+            
+            keydownHandler: function(e) {
+                var usingShortcut = (e.ctrlKey && !app.isMac) || (e.metaKey && app.isMac && !e.ctrlKey);
+
+                if (!usingShortcut) {
+                    return true;
+                }
+
+                if (e.shiftKey && e.which == 49) {
+                    e.preventDefault();
+                    this.selectNextNote();
+                    return true;
+                }
+
+                if (e.which == 83) {
+                    e.preventDefault();
+                    this.currentNote().save();
+                    return true;
+                }
+
+                if (e.which == 84) {
+                   viewModel.createNewNote('s');
+                   e.preventDefault();
+                   return false;
+                }
+
+                if (e.which >= 48 && e.which < 57) {
+                    e.preventDefault();
+                    var idx = e.which == 48 ? 10 : e.which - 49;
+                    var noteViewModel = notes()[idx];
+                    if (noteViewModel) noteViewModel.activate();
+                    return true;
+                }
+
+                
+                return true;
+            }
+
+        };
+
+        // Dependent observables cannot be declared inline
+        viewModel.currentNote = ko.dependentObservable(function() {
+            return this.notes()[ this.index() ];
+        }, viewModel);
+
+        viewModel.maxIndex = ko.dependentObservable(function() {
+            return this.notes().length;
+        }, viewModel);
+
+        viewModel.title = ko.dependentObservable(function() {
+            var currentNote = this.currentNote();
+
+            if (!currentNote) {
+                return "ab3";
+            }
+
+            return "ab3 | " + app.preview(currentNote.content());
+        }, viewModel);
+
+        viewModel.currentContent = ko.dependentObservable({
+            read: function() {
+                if (!this.currentNote()) return "no content";
+                return this.currentNote().content();
+            },
+            write: function(value) {
+                var oldValue = this.currentNote().content();
+
+                if (oldValue != value) {
+                    this.currentNote().content(value);
+                    this.currentNote().isDirty(true);
+                }
+
+            },
+            owner: viewModel
+        });
+
+        // ----------------------------------------------------------
+        // Constructor to create Note View Models
+
+        var NoteViewModel = function(key, content) {
+                this.key = key;
+                this.content = ko.observable(content);
+                this.isDirty = ko.observable(false);
+                this.selected = ko.observable(false);
+                this.hovering = ko.observable(false);
+                this.removeHovered = ko.observable(false);
+
+                this.title = ko.dependentObservable(function() {
+                    return (this.isDirty() ? '* ' : '') + app.preview(this.content());
+                }, this)
+
+                this.activate = function() {
+                    viewModel.selectNote(key);
+                    this.selected(true);
+                }
+
+                this.save = function() {
+                    app.saveNote(viewModel.currentNote().key, viewModel.currentNote().content());
+                    app.notify("Saved");
+                    this.isDirty(false);
+                }
+
+                // -------------------------------
+                // Event Handlers
+                this.select = function(e) {
+                    e.preventDefault();
+                    this.activate();
+                    return true;
+                };
+                this.remove = function(e) {
+                    viewModel.removeNote(this.key);
+                    return false;
+                };
+                this.hoverOnTab = function() {
+                    this.hovering(true);
+                };
+                this.hoverOffTab = function() {
+                    this.hovering(false);
+                };
+
+                this.hoverOnRemove = function() {
+                    this.removeHovered(true);
+                };
+                this.hoverOffRemove = function() {
+                    this.removeHovered(false);
+                };
+
+            };
+
+
+
+        // ----------------------------------------------------------
+        // Custom "htmlValue" Knockout Binding Handler
+
+        ko.bindingHandlers.htmlValue = {
+            init: function(element, valueAccessor, allBindingsAccessor) {
+
+                ko.utils.registerEventHandler(element, "blur keyup paste", function() {
+                    var modelValue = valueAccessor();
+                    var elementValue = element.innerHTML;
+                    if (ko.isWriteableObservable(modelValue)) {
+                        modelValue(elementValue);
+                    }
+                    else { // handle non-observable one-way binding
+
+                        var allBindings = allBindingsAccessor();
+                        if (allBindings['_ko_property_writers'] && allBindings['_ko_property_writers'].htmlValue) {
+                            allBindings['_ko_property_writers'].htmlValue(elementValue);
+                        }
+                       
+                    }
+                });
+
+            },
+
+            update: function(element, valueAccessor) {
+                var value = ko.utils.unwrapObservable(valueAccessor()) || "";
+                //app.notify(valueAccessor()());
+                //element.innerHTML = value;
+            }
+        };
+
+
+        // ----------------------------------------------------------
+        // Helper functions
+        
+
+        var publishCurrentNote = function() {
+            var form = $('<form action="@{Application.publishNote()}" method="post"><input type="hidden" name="content" value="' + viewModel.currentNote().content() + '"/> </form>');
+            $('body').append(form);
+            form.submit();
+        };
+
+
+
+        // ----------------------------------------------------------
+        // Initialize Note View Models from Data
+
+        var noteKeys = app.getNoteKeys();
+        for (var i in noteKeys) {
+            var content = app.loadNote(noteKeys[i]);
+            viewModel.addViewNote(noteKeys[i], content);
+        }
+
+        // Apply Knockout Bindings to Head and Body
+        ko.applyBindings(viewModel, window.document.body);
+        ko.applyBindings(viewModel, window.document.head);
+
+        var editor = CodeMirror.fromTextArea(document.getElementById("editorArea"), {
+            lineNumbers: false,
+            matchBrackets: true,
+            mode: "text",
+            onChange: function(editor) {
+                viewModel.updateContentFromEditor(editor);
+            }
+        });
+
+        editor.focus();
+    });
+</script>
+
+<ul id="noteList" data-bind="template: { name: 'noteTabTemplate', foreach: notes }">
+    <li class="add-note-tool note-tab" data-bind="click: addNoteHandler">+</li>
+</ul>
+
+<div class="paper" data-bind="event: { keydown : keydownHandler }">
+    <!--
+	<pre class="note-content" contentEditable="true" spellcheck="false" data-bind="htmlValue: currentContent, event: { keydown : keydownHandler }"></pre>
+    -->
+    <textarea id="editorArea" data-bind="value: currentContent"></textarea>
+    <div class="tools">
+		<a href="#save" title="Save in local storage" data-bind="click: saveCurrentDocument">Save</a>
+        <a href="#publish" title="Publish this note on the interwebs" data-bind="click: publishCurrentDocument">Publish</a>
+    </div>
+</div>
+
+<script id="noteTabTemplate" type="text/html">
+    <li class="note-tab" data-bind="click: select, event: { mouseover: hoverOnTab, mouseleave: hoverOffTab }, css: { 'note-selected-tab' : selected() } ">
+        <span class="note-tab-title" data-bind="html: title">Doc</span>
+        <span class="remove-note-tool" data-bind="click: remove, style: { visibility: hovering() ? 'visible' : 'hidden'}, css: { 'selected-tool': removeHovered() }, event: { mouseover: hoverOnRemove, mouseleave: hoverOffRemove }">X</span>
+    </li>
+</script>
+
+

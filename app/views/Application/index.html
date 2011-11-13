@@ -1,4 +1,125 @@
-#{extends 'main.html' /}
-#{set title:'Home' /}
+#{extends 'main.html' /} #{set title:'Home' /}
 
-#{welcome /}
+
+<script type="text/javascript">
+
+	$(function(){
+	  var viewModel = {
+	  	  id : ${note.id},
+	  	  content  :  ko.observable('${note.content.escapeJavaScript().raw()}')
+	  };
+
+	  viewModel.title = ko.dependentObservable(function() {
+	    var title = app.stripHtml($.trim(viewModel.content()).replace(/&.*;/gm, ''));
+	   
+	    if (title.length < 5) {
+	      spaces = '';
+	      for (i=0;i<5-title.length;i++) {
+	        spaces += '&nbsp;';
+	      }
+	      return title + spaces;
+	    }
+	   
+	    if (title.length < 16) {
+	      return title;
+	    }
+	  	return title.substring(0,14) + '..'; 
+	  });
+	  
+	  ko.bindingHandlers.htmlValue = {
+         init: function(element, valueAccessor, allBindingsAccessor) {
+         	
+            ko.utils.registerEventHandler(element, "blur keyup paste", function() {
+               var modelValue = valueAccessor();
+               var elementValue = element.innerHTML;
+               if (ko.isWriteableObservable(modelValue)) {
+                   modelValue(elementValue);
+               }
+               else { // handle non-observable one-way binding
+                   var allBindings = allBindingsAccessor();
+                   if (allBindings['_ko_property_writers'] && allBindings['_ko_property_writers'].htmlValue) 
+                   	  allBindings['_ko_property_writers'].htmlValue(elementValue);
+               }
+          });
+      	}
+      };
+	
+	  ko.applyBindings(viewModel);
+  	  
+	  
+	  $('#saveLink').click(function(e) { 
+	    	e.preventDefault(); 
+	    	var jsonData = ko.toJSON(viewModel);
+	    	
+	    	try {
+	    		app.store.set('note', jsonData);
+	    	} catch (e) {
+	    		app.notifyError('Unable to save locally.');
+	    	}
+	    	
+	    	if (viewModel.id) {
+	    		$.ajax({type:'PUT', url:'@{Application.postNote()}', data: jsonData, contentType: 'application/json', success: function() {
+	    			app.notify("Saved");
+	    		}});
+	    	} else {
+	    		$.ajax({type:'PUT', url:'@{Application.createNote()}', data: jsonData, contentType: 'application/json', success: function(e) {
+	    			viewModel.id = e;
+	    			app.notify("Saved");
+	    		}});	    	
+	    	}
+	    		
+	    	return true;
+	  });
+	  
+	  $('#loadLink').click(function(e) {
+	  	e.preventDefault();
+	  	
+	  	app.store.get('note', function(ok, noteStr) {
+  			if (ok) {
+  				var note = JSON.parse(noteStr);
+    			viewModel.content(note.content);
+    			$('.note-content').html(note.content);
+    		} else {
+    			app.notifyError('Unable to load.');
+    		}
+		
+		});
+	  	
+	  	return true;
+	  });
+	    
+	  $('.note-content').bind('keydown', function(e) {
+	  	if (e.which == 9) {
+	  		app.insertAtCaret('\t');
+	  		e.preventDefault();
+	  		return true;
+	  	}
+	  	return true;
+	  });
+	  
+	  $('.note-content').html('${note.content.escapeJavaScript().raw()}');
+	  
+	});
+
+	</script>
+
+<ul class="note-tab-container">
+	<li class="note-title note-tab note-tab-first" data-bind="html: title"></li>
+	<li class="note-title note-tab">Another doc</li>
+	<li class="note-title note-tab">Third doc</li>
+	<li class="note-title note-tab">+</li>
+</ul>
+
+<div class="paper">
+	<pre class="note-content" contentEditable="true" spellcheck="false" data-bind="htmlValue: content"></pre>
+
+	<div class="tools">
+		<a href="#" id="loadLink">Load</a> 
+		<a href="#" id="saveLink">Save</a> 
+		<form id="form" style="display: inline;" action="@{Application.publishNote()}" method="post"><input type="hidden" name="noteId" value="${note.id}"/><a href="#" onClick="form.submit();e.preventDefault();return true;">Publish</a></form>
+	</div>
+</div>
+<!-- 
+<textarea data-bind="value: content" rows="10" cols="80" />
+ -->
+

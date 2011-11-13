@@ -1,0 +1,15 @@
+#{extends 'main.html' /} #{set title:'Home' /}
+
+<div class="paper">
+	<pre class="note-content"></pre>
+
+	<script type="text/javascript"> 
+		$('.note-content').html('#{if note}${note.content.escapeJavaScript().raw()}#{/if}#{if !note}No such note.#{/if}');
+	</script>
+	
+	<div class="tools">
+		<a href="#" id="Like">Like</a> <a href="#" id>Tweet</a>
+	</div>
+</div>
+
+

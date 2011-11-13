@@ -2,15 +2,33 @@
 
 <html>
     <head>
-        <title>#{get 'title' /}</title>
+        <title data-bind="text: title" >#{get 'title' /}</title>
         <meta charset="${_response_encoding}">
+
+        <link href='http://fonts.googleapis.com/css?family=Anonymous+Pro' rel='stylesheet' type='text/css'>
+        
         <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/main.css'}">
+        <link rel="stylesheet" href="@{'/public/stylesheets/jquery.jgrowl.css'}" type="text/css" />
+        <link rel="stylesheet" href="@{'/public/stylesheets/codemirror.css'}">
+
+        <link rel="shortcut icon" href="@{'/public/images/favicon.ico'}" />
         #{get 'moreStyles' /}
-        <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
+
         <script src="@{'/public/javascripts/jquery-1.5.2.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
-        #{get 'moreScripts' /}
+        <script src="@{'/public/javascripts/jquery.tmpl.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+        <script src="@{'/public/javascripts/knockout-1.2.1.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+        <script src="@{'/public/javascripts/persist-all-min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+        <script src="@{'/public/javascripts/jquery.jgrowl.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+        <script src="@{'/public/javascripts/application.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+        <script src="@{'/public/javascripts/codemirror.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+
+         #{get 'moreScripts' /}
     </head>
-    <body>
+    <body data-bind="click: focusInEditor">
+    	
+    	<div class="mainContent">
         #{doLayout /}
+        </div>
+    
     </body>
 </html>
