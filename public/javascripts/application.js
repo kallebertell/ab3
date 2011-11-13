@@ -14,58 +14,27 @@ var app =  (function() {
 			console.log(str);
 	};
 
-	app.stripHtml = function(oldString) {
-		var newString = "";
-		var inTag = false;
-		for ( var i = 0; i < oldString.length; i++) {
-			if (oldString.charAt(i) == '<' || oldString.charAt(i) == '&')
-				inTag = true;
-			if (oldString.charAt(i) == '>' || oldString.charAt(i) == ';') {
-				if (oldString.charAt(i + 1) == "<") {
-					// dont do anything
-				} else {
-					inTag = false;
-					i++;
-				}
-			}
-
-			if (!inTag)
-				newString += oldString.charAt(i);
-		}
-
-		return newString;
-	};
-
-	app.insertAtCaret = function(text) {
-	    if (window.getSelection) {
-	        var sel = window.getSelection();
-	        if (sel.rangeCount) {
-	            var textNode = document.createTextNode(text);
-	            var selRange = sel.getRangeAt(0);
-	            selRange.deleteContents();
-	            selRange.insertNode(textNode);
-	            var range = document.createRange();
-	            range.selectNodeContents(textNode);
-	            range.collapse(false);
-	            sel.removeAllRanges();
-	            sel.addRange(range);
-	        }
-	    } else if (document.selection) {
-	        document.selection.clear();
-	        var range = document.selection.createRange();
-	        range.pasteHTML(text);
-	    }
-	};
-
 	app.preview = function(text) {
 		if (!text || text.length < 1) {
 			return "Empty";
 		}
 
-		var title = $.trim(text).replace(/&.*;/gm, '');
+        var lines = text.split("\n");
+        var firstNonEmptyLineIndex = 0;
+        for (i in lines) {
+            if ($.trim(lines[i]).length > 0) {
+                firstNonEmptyLineIndex = i;
+                break;
+            }
+        }
+        // Html escaping hack + white space truncation
+		var title = $('<span></span>').text($.trim(lines[firstNonEmptyLineIndex])).html().replace(/\s+/g," ");
+
 		if (title.length > 12) {
 		  return title.substring(0,11) + '..';
-		}
+		} else if (title.length < 1) {
+            return "Empty";
+        }
 
 		return title;
 	};

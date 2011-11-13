@@ -53,7 +53,7 @@
 
             selectNextNote : function() {
                 var idx = this.index() + 1;
-                var noteViewModel = notes()[idx];
+                var noteViewModel = this.notes()[idx];
                 if (noteViewModel) noteViewModel.activate();
             },
 
@@ -119,7 +119,7 @@
                 if (e.which >= 48 && e.which < 57) {
                     e.preventDefault();
                     var idx = e.which == 48 ? 10 : e.which - 49;
-                    var noteViewModel = notes()[idx];
+                    var noteViewModel = this.notes()[idx];
                     if (noteViewModel) noteViewModel.activate();
                     return true;
                 }
@@ -218,39 +218,6 @@
                 };
 
             };
-
-
-
-        // ----------------------------------------------------------
-        // Custom "htmlValue" Knockout Binding Handler
-
-        ko.bindingHandlers.htmlValue = {
-            init: function(element, valueAccessor, allBindingsAccessor) {
-
-                ko.utils.registerEventHandler(element, "blur keyup paste", function() {
-                    var modelValue = valueAccessor();
-                    var elementValue = element.innerHTML;
-                    if (ko.isWriteableObservable(modelValue)) {
-                        modelValue(elementValue);
-                    }
-                    else { // handle non-observable one-way binding
-
-                        var allBindings = allBindingsAccessor();
-                        if (allBindings['_ko_property_writers'] && allBindings['_ko_property_writers'].htmlValue) {
-                            allBindings['_ko_property_writers'].htmlValue(elementValue);
-                        }
-                       
-                    }
-                });
-
-            },
-
-            update: function(element, valueAccessor) {
-                var value = ko.utils.unwrapObservable(valueAccessor()) || "";
-                //app.notify(valueAccessor()());
-                //element.innerHTML = value;
-            }
-        };
 
 
         // ----------------------------------------------------------
