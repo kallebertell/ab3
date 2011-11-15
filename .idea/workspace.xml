@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f2ed6d50-8c1b-4301-8a3c-5f7a3064dd21" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/Application/editor.html" afterPath="$PROJECT_DIR$/app/views/Application/editor.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/main.html" afterPath="$PROJECT_DIR$/app/views/main.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/application.js" afterPath="$PROJECT_DIR$/public/javascripts/application.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/stylesheets/codemirror.css" afterPath="$PROJECT_DIR$/public/stylesheets/codemirror.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/stylesheets/jquery.jgrowl.css" afterPath="$PROJECT_DIR$/public/stylesheets/jquery.jgrowl.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/stylesheets/main.css" afterPath="$PROJECT_DIR$/public/stylesheets/main.css" />
     </list>
     <ignored path="notebook.iws" />
@@ -32,7 +30,7 @@
       <file leaf-file-name="editor.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/Application/editor.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="261" column="29" selection-start="8847" selection-end="8847" vertical-scroll-proportion="-10.185185">
+            <state line="272" column="103" selection-start="9208" selection-end="9208" vertical-scroll-proportion="-8.037037">
               <folding />
             </state>
           </provider>
@@ -41,8 +39,28 @@
       <file leaf-file-name="main.css" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/stylesheets/main.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="36" column="16" selection-start="550" selection-end="550" vertical-scroll-proportion="0.39267015">
+            <state line="110" column="28" selection-start="2377" selection-end="2377" vertical-scroll-proportion="0.58115184">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="jquery.jgrowl.css" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/stylesheets/jquery.jgrowl.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="4" column="27" selection-start="69" selection-end="69" vertical-scroll-proportion="0.0">
+              <folding>
+                <marker date="1321221937000" expanded="true" signature="227:491" placeholder="{...}" />
+                <marker date="1321221937000" expanded="true" signature="515:644" placeholder="{...}" />
+                <marker date="1321221937000" expanded="true" signature="691:824" placeholder="{...}" />
+                <marker date="1321221937000" expanded="true" signature="848:977" placeholder="{...}" />
+                <marker date="1321221937000" expanded="true" signature="1028:1292" placeholder="{...}" />
+                <marker date="1321221937000" expanded="true" signature="1316:1580" placeholder="{...}" />
+                <marker date="1321221937000" expanded="true" signature="1630:1763" placeholder="{...}" />
+                <marker date="1321221937000" expanded="true" signature="1787:2051" placeholder="{...}" />
+                <marker date="1321221937000" expanded="true" signature="2096:2229" placeholder="{...}" />
+                <marker date="1321221937000" expanded="true" signature="2253:2382" placeholder="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -65,15 +83,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="codemirror.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/stylesheets/codemirror.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="13" selection-start="13" selection-end="13" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FindManager">
@@ -91,8 +100,9 @@
         <option value="$PROJECT_DIR$/public/javascripts/persist-all-min.js" />
         <option value="$PROJECT_DIR$/app/views/main.html" />
         <option value="$PROJECT_DIR$/public/javascripts/application.js" />
-        <option value="$PROJECT_DIR$/app/views/Application/editor.html" />
         <option value="$PROJECT_DIR$/public/stylesheets/codemirror.css" />
+        <option value="$PROJECT_DIR$/public/stylesheets/jquery.jgrowl.css" />
+        <option value="$PROJECT_DIR$/app/views/Application/editor.html" />
         <option value="$PROJECT_DIR$/public/stylesheets/main.css" />
       </list>
     </option>
@@ -397,10 +407,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/main.html">
+    <entry file="file://$PROJECT_DIR$/public/stylesheets/jquery.jgrowl.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="42" selection-start="77" selection-end="77" vertical-scroll-proportion="-2.5">
-          <folding />
+        <state line="4" column="27" selection-start="69" selection-end="69" vertical-scroll-proportion="0.0">
+          <folding>
+            <marker date="1321221937000" expanded="true" signature="227:491" placeholder="{...}" />
+            <marker date="1321221937000" expanded="true" signature="515:644" placeholder="{...}" />
+            <marker date="1321221937000" expanded="true" signature="691:824" placeholder="{...}" />
+            <marker date="1321221937000" expanded="true" signature="848:977" placeholder="{...}" />
+            <marker date="1321221937000" expanded="true" signature="1028:1292" placeholder="{...}" />
+            <marker date="1321221937000" expanded="true" signature="1316:1580" placeholder="{...}" />
+            <marker date="1321221937000" expanded="true" signature="1630:1763" placeholder="{...}" />
+            <marker date="1321221937000" expanded="true" signature="1787:2051" placeholder="{...}" />
+            <marker date="1321221937000" expanded="true" signature="2096:2229" placeholder="{...}" />
+            <marker date="1321221937000" expanded="true" signature="2253:2382" placeholder="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -411,16 +432,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/main.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="42" selection-start="77" selection-end="77" vertical-scroll-proportion="-2.5">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/Application/editor.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="261" column="29" selection-start="8847" selection-end="8847" vertical-scroll-proportion="-10.185185">
+        <state line="272" column="103" selection-start="9208" selection-end="9208" vertical-scroll-proportion="-8.037037">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/stylesheets/main.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="16" selection-start="550" selection-end="550" vertical-scroll-proportion="0.39267015">
+        <state line="110" column="28" selection-start="2377" selection-end="2377" vertical-scroll-proportion="0.58115184">
           <folding />
         </state>
       </provider>

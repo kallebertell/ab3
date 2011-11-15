@@ -270,7 +270,7 @@
 </script>
 
 <ul id="noteList" data-bind="template: { name: 'noteTabTemplate', foreach: notes }">
-    <li class="add-note-tool note-tab" data-bind="click: addNoteHandler">+</li>
+    <li class="add-note-tool note-tab" data-bind="click: addNoteHandler"><span class="icon-plus">&nbsp;</span></li>
 </ul>
 
 <div class="paper">
@@ -284,7 +284,7 @@
 <script id="noteTabTemplate" type="text/html">
     <li class="note-tab" data-bind="click: select, event: { mouseover: hoverOnTab, mouseleave: hoverOffTab }, css: { 'note-selected-tab' : selected() } ">
         <span class="note-tab-title" data-bind="html: title">Doc</span>
-        <span class="remove-note-tool" data-bind="click: remove, style: { visibility: hovering() ? 'visible' : 'hidden'}, css: { 'selected-tool': removeHovered() }, event: { mouseover: hoverOnRemove, mouseleave: hoverOffRemove }">X</span>
+        <span class="remove-note-tool icon-x" data-bind="click: remove, style: { visibility: hovering() ? 'visible' : 'hidden'}, css: { 'icon-x-hover': removeHovered() }, event: { mouseover: hoverOnRemove, mouseleave: hoverOffRemove }">&nbsp;</span>
     </li>
 </script>
 
