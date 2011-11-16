@@ -14,8 +14,8 @@ import play.PlayPlugin;
 public class MyPlugin extends PlayPlugin { 
     @Override 
     public Object bind(String name, Class clazz, Type type, Annotation[] annotations, Map<String, String[]> params) { 
-    	Logger.info("This totally got called with "+clazz+" and "+name+" and shit");
-            if (clazz.getName().equals(Note.class.getName())) { 
+            if (clazz.getName().equals(Note.class.getName())) {
+    	        Logger.info("This totally got called with "+clazz+" and "+name+" and shit");
             	return new Gson().fromJson(params.get("body")[0], Note.class);
             } 
             return null; 

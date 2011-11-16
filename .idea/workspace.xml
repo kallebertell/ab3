@@ -2,7 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f2ed6d50-8c1b-4301-8a3c-5f7a3064dd21" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/controllers/Notes.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/controllers/Users.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/Application/index.html" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/images/big_icons.png" afterPath="$PROJECT_DIR$/public/images/big_icons.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/images/small_icons.png" afterPath="$PROJECT_DIR$/public/images/small_icons.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/Application.java" afterPath="$PROJECT_DIR$/app/controllers/Application.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/Note.java" afterPath="$PROJECT_DIR$/app/models/Note.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/utils/MyPlugin.java" afterPath="$PROJECT_DIR$/app/utils/MyPlugin.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/Application/editor.html" afterPath="$PROJECT_DIR$/app/views/Application/editor.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/Application/showNote.html" afterPath="$PROJECT_DIR$/app/views/Application/showNote.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/main.html" afterPath="$PROJECT_DIR$/app/views/main.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/conf/routes" afterPath="$PROJECT_DIR$/conf/routes" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/stylesheets/jquery.jgrowl.css" afterPath="$PROJECT_DIR$/public/stylesheets/jquery.jgrowl.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/stylesheets/main.css" afterPath="$PROJECT_DIR$/public/stylesheets/main.css" />
     </list>
@@ -30,54 +42,43 @@
       <file leaf-file-name="editor.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/Application/editor.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="272" column="103" selection-start="9208" selection-end="9208" vertical-scroll-proportion="-8.037037">
+            <state line="37" column="73" selection-start="1199" selection-end="1199" vertical-scroll-proportion="-13.518518">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.css" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="main.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/stylesheets/main.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="110" column="28" selection-start="2377" selection-end="2377" vertical-scroll-proportion="0.58115184">
+            <state line="194" column="0" selection-start="4008" selection-end="4008" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="jquery.jgrowl.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/stylesheets/jquery.jgrowl.css">
+      <file leaf-file-name="showNote.html" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/Application/showNote.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="27" selection-start="69" selection-end="69" vertical-scroll-proportion="0.0">
-              <folding>
-                <marker date="1321221937000" expanded="true" signature="227:491" placeholder="{...}" />
-                <marker date="1321221937000" expanded="true" signature="515:644" placeholder="{...}" />
-                <marker date="1321221937000" expanded="true" signature="691:824" placeholder="{...}" />
-                <marker date="1321221937000" expanded="true" signature="848:977" placeholder="{...}" />
-                <marker date="1321221937000" expanded="true" signature="1028:1292" placeholder="{...}" />
-                <marker date="1321221937000" expanded="true" signature="1316:1580" placeholder="{...}" />
-                <marker date="1321221937000" expanded="true" signature="1630:1763" placeholder="{...}" />
-                <marker date="1321221937000" expanded="true" signature="1787:2051" placeholder="{...}" />
-                <marker date="1321221937000" expanded="true" signature="2096:2229" placeholder="{...}" />
-                <marker date="1321221937000" expanded="true" signature="2253:2382" placeholder="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="application.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/javascripts/application.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="21" selection-start="733" selection-end="733" vertical-scroll-proportion="0.0">
+            <state line="22" column="63" selection-start="687" selection-end="687" vertical-scroll-proportion="0.57391304">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/main.html">
+      <file leaf-file-name="codemirror.css" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/stylesheets/codemirror.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="42" selection-start="77" selection-end="77" vertical-scroll-proportion="-2.5">
+            <state line="2" column="18" selection-start="34" selection-end="98" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="404.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/errors/404.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
               <folding />
             </state>
           </provider>
@@ -98,12 +99,16 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/public/javascripts/persist-all-min.js" />
-        <option value="$PROJECT_DIR$/app/views/main.html" />
         <option value="$PROJECT_DIR$/public/javascripts/application.js" />
         <option value="$PROJECT_DIR$/public/stylesheets/codemirror.css" />
+        <option value="$PROJECT_DIR$/app/views/main.html" />
         <option value="$PROJECT_DIR$/public/stylesheets/jquery.jgrowl.css" />
+        <option value="$PROJECT_DIR$/app/utils/MyPlugin.java" />
+        <option value="$PROJECT_DIR$/app/controllers/Application.java" />
         <option value="$PROJECT_DIR$/app/views/Application/editor.html" />
+        <option value="$PROJECT_DIR$/conf/routes" />
         <option value="$PROJECT_DIR$/public/stylesheets/main.css" />
+        <option value="$PROJECT_DIR$/app/views/Application/showNote.html" />
       </list>
     </option>
   </component>
@@ -192,10 +197,6 @@
               <option name="myItemId" value="public" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="javascripts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -207,7 +208,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
+              <option name="myItemId" value="conf" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -240,6 +241,104 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="notebook" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="notebook" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="errors" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="notebook" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="notebook" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="notebook" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="notebook" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="utils" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="notebook" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="notebook" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="models" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="notebook" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="notebook" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controllers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -365,34 +464,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public/javascripts/persist-all-min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="247" selection-start="15656" selection-end="15656" vertical-scroll-proportion="1.1776062">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/jquery.tmpl.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="12" selection-start="1127" selection-end="1127" vertical-scroll-proportion="0.33296582">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/knockout-1.2.1.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="269" selection-start="21487" selection-end="21487" vertical-scroll-proportion="0.5302013">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/Application/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-1.7348754">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/javascripts/application.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="31" column="21" selection-start="733" selection-end="733" vertical-scroll-proportion="0.0">
@@ -407,48 +478,111 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/main.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="59" selection-start="967" selection-end="967" vertical-scroll-proportion="-11.25">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/stylesheets/jquery.jgrowl.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="27" selection-start="69" selection-end="69" vertical-scroll-proportion="0.0">
+        <state line="91" column="28" selection-start="3353" selection-end="3353" vertical-scroll-proportion="0.0">
           <folding>
-            <marker date="1321221937000" expanded="true" signature="227:491" placeholder="{...}" />
-            <marker date="1321221937000" expanded="true" signature="515:644" placeholder="{...}" />
-            <marker date="1321221937000" expanded="true" signature="691:824" placeholder="{...}" />
-            <marker date="1321221937000" expanded="true" signature="848:977" placeholder="{...}" />
-            <marker date="1321221937000" expanded="true" signature="1028:1292" placeholder="{...}" />
-            <marker date="1321221937000" expanded="true" signature="1316:1580" placeholder="{...}" />
-            <marker date="1321221937000" expanded="true" signature="1630:1763" placeholder="{...}" />
-            <marker date="1321221937000" expanded="true" signature="1787:2051" placeholder="{...}" />
-            <marker date="1321221937000" expanded="true" signature="2096:2229" placeholder="{...}" />
-            <marker date="1321221937000" expanded="true" signature="2253:2382" placeholder="{...}" />
+            <marker date="1321392071000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1321392071000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1321392071000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1321392071000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1321392071000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1321392071000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1321392071000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1321392071000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1321392071000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1321392071000" expanded="true" signature="-1:-1" placeholder="{...}" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/errors/404.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/utils/UidGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/Note.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="4" selection-start="581" selection-end="581" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/utils/NoteJsonBinder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/utils/JsonBinder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/utils/MyPlugin.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="16" selection-start="461" selection-end="461" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/Application.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="29" selection-start="608" selection-end="608" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/stylesheets/codemirror.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="13" selection-start="13" selection-end="13" vertical-scroll-proportion="0.0">
+        <state line="2" column="18" selection-start="34" selection-end="98" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/main.html">
+    <entry file="file://$PROJECT_DIR$/conf/routes">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="42" selection-start="77" selection-end="77" vertical-scroll-proportion="-2.5">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/Application/editor.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="272" column="103" selection-start="9208" selection-end="9208" vertical-scroll-proportion="-8.037037">
+        <state line="5" column="20" selection-start="123" selection-end="123" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/stylesheets/main.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="110" column="28" selection-start="2377" selection-end="2377" vertical-scroll-proportion="0.58115184">
+        <state line="194" column="0" selection-start="4008" selection-end="4008" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/Application/editor.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="73" selection-start="1199" selection-end="1199" vertical-scroll-proportion="-13.518518">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/Application/showNote.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="63" selection-start="687" selection-end="687" vertical-scroll-proportion="0.57391304">
           <folding />
         </state>
       </provider>

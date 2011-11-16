@@ -19,48 +19,23 @@ public class Application extends Controller {
 
     
 	public static void index() {
-		redirect("Application.showNotes");
+		render("Application/editor.html");
     }
 	
-	public static void showNotes() {
+	public static void edit() {
 		render("Application/editor.html");
 	}
- 
-	public static void editNote(Long noteId) {
-		Note note = Note.findById(noteId);
 
-		if (note.isPublished()) {
-			redirect("Application.showNote", noteId);
-		}
-		
-		render("Application/index.html", note);
-	}
-	
-	public static void createNote() {
-		Note note = new Note("");
-		note.uid = UidGenerator.newId();
-		note.save();
-		redirect("Application.editNote", note.id);
-	}
-	
-	public static void showNote(Long noteId) {
-		Note note = Note.findById(noteId);
+	public static void showNote(String uid) {
+		Note note = Note.find("uid = :uid").bind("uid", uid).first();
 		render(note);
 	}
-	
-
-	public static Long createNoteJson(String content) {
-		Note note = new Note(content);
-		note.uid = UidGenerator.newId();
-		note.save();
-		return note.id;
-	} 
 	
 	public static void publishNote(String content) {
 		Note note = new Note(content);
 		note.uid = UidGenerator.newId();
 		note.publish();
 		note.save();
-		redirect("Application.showNote", note.id);
+		redirect("Application.showNote", note.uid);
 	}
 }

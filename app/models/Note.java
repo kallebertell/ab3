@@ -26,6 +26,18 @@ public class Note extends Model {
         this.createdAt = new Date();
     }
     
+    public String getTweet() {
+    	if (content == null) {
+    		return "";
+    	}
+    	
+    	String tweet = content.trim();
+    	if (tweet.length() > 100) {
+    		tweet = tweet.substring(0,100)+"..";
+    	}
+    	return tweet;
+    }
+    
     public String getTitle() {
     	if (content == null)
     		return "";

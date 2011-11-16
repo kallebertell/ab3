@@ -1,15 +1,32 @@
-#{extends 'main.html' /} #{set title:'Home' /}
+#{extends 'main.html' /} 
 
+#{set title:note.getTweet() /}
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=117371268319109";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="filler"></div>
 <div class="paper">
-	<pre class="note-content"></pre>
-
-	<script type="text/javascript"> 
-		$('.note-content').html('#{if note}${note.content.escapeJavaScript().raw()}#{/if}#{if !note}No such note.#{/if}');
-	</script>
-	
-	<div class="tools">
-		<a href="#" id="Like">Like</a> <a href="#" id>Tweet</a>
-	</div>
+    <div class="note-content">
+    ${note.content}
+    </div>
+    <div class="tools">
+        <div class="tools-left">
+        </div>
+        <div class="tools-right">
+            <div class="tools-left" style="padding-right: 10px;">
+            <a href="https://twitter.com/share" class="twitter-share-button" data-count="none">Tweet</a><script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
+            </div>
+            <div class="tools-right">
+                <div class="fb-like" data-send="false" data-layout="button_count" data-width="50" data-show-faces="false" data-font="arial"></div>
+            </div>
+        </div>
+    </div>
 </div>
-
 

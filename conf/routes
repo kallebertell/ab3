@@ -3,12 +3,9 @@
 # ~~~~
 
 # Home page
-GET     /                                       Application.showNotes
+GET     /                                       Application.index
 
-GET     /e/{noteId}                             Application.editNote
-
-
-GET     /{noteId}                               Application.showNote
+GET     /{uid}                                  Application.showNote
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

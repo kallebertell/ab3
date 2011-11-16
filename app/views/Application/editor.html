@@ -33,9 +33,9 @@
                 app.removeNote(key);
 
                 if (currentNoteKey == key) {
-                  this.selectNote(app.getNoteKeyByIndex(0));
+                  this.notes()[0].activate();
                 } else {
-                  this.selectNote(currentNoteKey);
+                  this.notes()[ app.getIndex(currentNoteKey) ].activate();
                 }
             },
 
@@ -153,11 +153,11 @@
         }, viewModel);
 
         viewModel.title = ko.dependentObservable(function() {
-            return "ab3" + (this.currentNote() ? " | " + app.preview(this.currentNote().content(), true) : "");
+            return "note" + (this.currentNote() ? " | " + app.preview(this.currentNote().content(), true) : "");
         }, viewModel);
 
         viewModel.unescapedTitle = ko.dependentObservable(function() {
-             return "ab3" + (this.currentNote() ? " | " + app.preview(this.currentNote().content(), false) : "");
+             return "note" + (this.currentNote() ? " | " + app.preview(this.currentNote().content(), false) : "");
         }, viewModel);
 
         viewModel.currentContent = ko.dependentObservable({
@@ -242,6 +242,17 @@
         };
 
 
+        ko.bindingHandlers.cssHover = {
+              init: function(element, valueAccessor, allBindingsAccessor) {
+                  var options = ko.utils.unwrapObservable(valueAccessor()),
+                      classOn = ko.utils.unwrapObservable(options.on),
+                      classOff = ko.utils.unwrapObservable(options.off);
+
+                  $(element).hover(
+                          function() { $(this).removeClass(classOff).addClass(classOn); },
+                          function() { $(this).removeClass(classOn).addClass(classOff); });
+            }
+            };
 
         // ----------------------------------------------------------
         // Initialize Note View Models from Data
@@ -266,6 +277,8 @@
         });
 
         editor.focus();
+
+        $('.twisp').twipsy({delayOut:0, delayIn:0, live:true});
     });
 </script>
 
@@ -276,8 +289,12 @@
 <div class="paper">
     <textarea id="editorArea" data-bind="value: currentContent"></textarea>
     <div class="tools">
-		<a href="#save" title="Save in local storage" data-bind="click: saveCurrentDocument">Save</a>
-        <a href="#publish" title="Publish this note on the interwebs" data-bind="click: publishCurrentDocument">Publish</a>
+        <div class="tools-left">
+		    <a class="twisp icon-save" href="#save" title="Save in local storage" data-bind="click: saveCurrentDocument, cssHover: { on: 'icon-save-hover', off: 'icon-save'} ">&nbsp;</a>
+        </div>
+        <div class="tools-right">
+            <a class="twisp icon-publish" href="#publish" title="Publish this note on the interwebs" data-bind="click: publishCurrentDocument, cssHover: { on: 'icon-publish-hover', off: 'icon-publish'}">&nbsp;</a>
+        </div>
     </div>
 </div>
 
