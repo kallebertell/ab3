@@ -7,8 +7,6 @@ import play.test.Fixtures;
 public class Bootstrap extends Job<Void>{
 
 	public void doJob() {
-		if (User.count() < 1) {
-			Fixtures.loadModels("initial-data.yml");
-		}
+
 	}
 }

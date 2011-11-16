@@ -2,21 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f2ed6d50-8c1b-4301-8a3c-5f7a3064dd21" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/controllers/Notes.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/controllers/Users.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/Application/index.html" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/images/big_icons.png" afterPath="$PROJECT_DIR$/public/images/big_icons.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/images/small_icons.png" afterPath="$PROJECT_DIR$/public/images/small_icons.png" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/models/User.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/Application.java" afterPath="$PROJECT_DIR$/app/controllers/Application.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/Note.java" afterPath="$PROJECT_DIR$/app/models/Note.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/utils/MyPlugin.java" afterPath="$PROJECT_DIR$/app/utils/MyPlugin.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/Application/editor.html" afterPath="$PROJECT_DIR$/app/views/Application/editor.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/Application/showNote.html" afterPath="$PROJECT_DIR$/app/views/Application/showNote.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/main.html" afterPath="$PROJECT_DIR$/app/views/main.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/conf/routes" afterPath="$PROJECT_DIR$/conf/routes" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/stylesheets/jquery.jgrowl.css" afterPath="$PROJECT_DIR$/public/stylesheets/jquery.jgrowl.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/stylesheets/main.css" afterPath="$PROJECT_DIR$/public/stylesheets/main.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Bootstrap.java" afterPath="$PROJECT_DIR$/app/Bootstrap.java" />
     </list>
     <ignored path="notebook.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -57,10 +45,37 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="showNote.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="showNote.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/Application/showNote.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="63" selection-start="687" selection-end="687" vertical-scroll-proportion="0.57391304">
+            <state line="22" column="63" selection-start="687" selection-end="687" vertical-scroll-proportion="-13.75">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Bootstrap.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Bootstrap.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="9" column="0" selection-start="193" selection-end="193" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="application.conf" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/conf/application.conf">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="initial-data.yml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/conf/initial-data.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -109,6 +124,7 @@
         <option value="$PROJECT_DIR$/conf/routes" />
         <option value="$PROJECT_DIR$/public/stylesheets/main.css" />
         <option value="$PROJECT_DIR$/app/views/Application/showNote.html" />
+        <option value="$PROJECT_DIR$/app/Bootstrap.java" />
       </list>
     </option>
   </component>
@@ -464,27 +480,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public/javascripts/application.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="21" selection-start="733" selection-end="733" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/codemirror.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/main.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="59" selection-start="967" selection-end="967" vertical-scroll-proportion="-11.25">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/stylesheets/jquery.jgrowl.css">
       <provider selected="true" editor-type-id="text-editor">
         <state line="91" column="28" selection-start="3353" selection-end="3353" vertical-scroll-proportion="0.0">
@@ -582,7 +577,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/Application/showNote.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="63" selection-start="687" selection-end="687" vertical-scroll-proportion="0.57391304">
+        <state line="22" column="63" selection-start="687" selection-end="687" vertical-scroll-proportion="-13.75">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Bootstrap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="0" selection-start="193" selection-end="193" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/conf/application.conf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/conf/initial-data.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
