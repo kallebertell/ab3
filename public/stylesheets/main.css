@@ -18,11 +18,14 @@ a {
 }
 
 .filler {
-    height: 50px;
+    min-height: 5px;
+}
+
+#editorArea {
+  display: none;
 }
 
 .paper {
-    font-family: 'Anonymous Pro', Courier, monospace, sans-serif;
     margin-top: -1px;
     border-top: 1px solid #f6f6f6;
     padding: 20px;
@@ -32,8 +35,11 @@ a {
 }
 
 .note-content {
+    line-height: 1em;
+    font-family: 'Anonymous Pro', Courier, monospace, sans-serif;
     padding: 20px;
     min-height: 400px;
+    overflow-x: auto;
 }
 
 ul {

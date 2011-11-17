@@ -4,10 +4,8 @@ var app =  (function() {
         isMac : navigator.userAgent.indexOf('Mac') != -1
 	};
 
-    var model = {
-        "noteKeys" : [],
-        "activeIndex" : -1
-    };
+    // Our application data
+    var model = { noteKeys : [], activeIndex: -1 };
 
 	app.log = function(str) {
 		if (app.debug && window.console)
@@ -104,7 +102,12 @@ var app =  (function() {
     app.init = function() {
         var mementoStr = app.store.get('model');
 
-        if (!mementoStr) return;
+        if (!mementoStr) {
+            model = loadDefaultData();
+            createDefaultNotes();
+            return;
+        }
+
         var memento = JSON.parse(mementoStr);
 
         if (!memento) return;
@@ -112,6 +115,18 @@ var app =  (function() {
         model.noteKeys = memento.noteKeys || [];
         model.activeIndex = memento.activeIndex || -1;
     };
+
+    var loadDefaultData = function() {
+        return {
+            noteKeys: ['intro', 'shortcuts'],
+            activeIndex: 0
+        };
+    };
+
+    var createDefaultNotes = function() {
+        app.saveNote('intro', 'Introduction\n\nThis is a plain text notepad.\nNotes are stored in your browser\'s local storage.\n\n\n\n\n\n\n\n\n\nSave a note by clicking the icon down left.\n\n                Share a note by clicking the icon down right.');
+        app.saveNote('shortcuts', 'Shortcuts\n\ncmd/ctrl-z        =  Undo\n\ncmd/ctrl-s        =  Saves the current document\n\ncmd/ctrl-1,2,3..  =  Activates the document at given index\n\ncmd/ctrl-.        =  Cycles active document left-to-right\n\ncmd/ctrl-,        =  Cycles active document right-to-left\n\n\n\nUse your browser to do the rest like copy/paste and zooming.')
+    }
 
 	return app;
 })();
