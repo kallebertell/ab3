@@ -1,18 +1,20 @@
-var app =  (function() {
-	var app = {
+var ab3 =  (function() {
+	var api = {
         debug : true,
         isMac : navigator.userAgent.indexOf('Mac') != -1
 	};
 
+    var store = new Persist.Store('com_kerebus_notepad');
+
     // Our application data
     var model = { noteKeys : [], activeIndex: -1 };
 
-	app.log = function(str) {
-		if (app.debug && window.console)
+	api.log = function(str) {
+		if (ab3.debug && window.console)
 			console.log(str);
 	};
 
-	app.preview = function(text, escape) {
+	api.preview = function(text, escape) {
 		if (!text || text.length < 1) {
 			return "Empty";
 		}
@@ -43,55 +45,65 @@ var app =  (function() {
 		return title;
 	};
 
-	app.notify = function(msg) {
+	api.notify = function(msg) {
 		$.jGrowl(msg);
 	};
 
-	app.notifyError = function(msg) {
+	api.notifyError = function(msg) {
 		this.notify(msg);
 	};
 
-    app.getIndex = function (key) {
+    api.getActiveIndex = function() {
+        return model.activeIndex;
+    }
+
+    api.getActiveKey = function() {
+        return model.noteKeys[ model.activeIndex ];
+    }
+    
+    api.getIndex = function (key) {
         return model.noteKeys.indexOf(key);
     };
 
-    app.getNoteKeys = function() {
+    api.getNoteKeys = function() {
         return model.noteKeys;
     };
 
-    app.getNoteKeyByIndex = function(index) {
+    api.getNoteKeyByIndex = function(index) {
         return model.noteKeys[index];
     }
 
-    app.addNote = function(content) {
-        var key = app.generateNoteKey();
+    api.addNote = function(content) {
+        var key = this.generateNoteKey();
 
         model.noteKeys.push(key);
-        app.store.set('model', JSON.stringify(model));
-        app.saveNote(key, content);
+        store.set('model', JSON.stringify(model));
+        this.saveNote(key, content);
         return key;
     };
 
-	app.store = new Persist.Store('com_kerebus_notepad');
-
-
-    app.loadNote = function(key) {
-        return app.store.get(key);
+    api.updateIndex = function(index) {
+        model.activeIndex = index;
+        store.set('model', JSON.stringify(model));
     }
 
-    app.saveNote = function(key, content) {
-        app.store.set(key, content);
+    api.loadNote = function(key) {
+        return store.get(key);
     }
 
-    app.removeNote = function(key) {
+    api.saveNote = function(key, content) {
+        store.set(key, content);
+    }
+
+    api.removeNote = function(key) {
         var idx = model.noteKeys.indexOf(key);
         if (idx != -1) model.noteKeys.splice(idx, 1);
 
-        app.store.remove(key);
-        app.store.set('model', JSON.stringify(model));
+        store.remove(key);
+        store.set('model', JSON.stringify(model));
     }
 
-    app.generateNoteKey = function() {
+    api.generateNoteKey = function() {
         var s4 = function() {
             return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
         };
@@ -99,8 +111,8 @@ var app =  (function() {
         return "note_" + s4() + s4();
     }
 
-    app.init = function() {
-        var mementoStr = app.store.get('model');
+    api.init = function() {
+        var mementoStr = store.get('model');
 
         if (!mementoStr) {
             model = loadDefaultData();
@@ -113,7 +125,7 @@ var app =  (function() {
         if (!memento) return;
 
         model.noteKeys = memento.noteKeys || [];
-        model.activeIndex = memento.activeIndex || -1;
+        model.activeIndex = memento.activeIndex;
     };
 
     var loadDefaultData = function() {
@@ -124,16 +136,17 @@ var app =  (function() {
     };
 
     var createDefaultNotes = function() {
-        app.saveNote('intro', 'Introduction\n\nThis is a plain text notepad.\nNotes are stored in your browser\'s local storage.\n\n\n\n\n\n\n\n\n\nSave a note by clicking the icon down left.\n\n                Share a note by clicking the icon down right.');
-        app.saveNote('shortcuts', 'Shortcuts\n\ncmd/ctrl-z        =  Undo\n\ncmd/ctrl-s        =  Saves the current document\n\ncmd/ctrl-1,2,3..  =  Activates the document at given index\n\ncmd/ctrl-.        =  Cycles active document left-to-right\n\ncmd/ctrl-,        =  Cycles active document right-to-left\n\n\n\nUse your browser to do the rest like copy/paste and zooming.')
+        api.saveNote('intro', 'Introduction\n\nThis is a plain text notepad.\nNotes are stored in your browser\'s local storage.\n\n\n\n\n\n\n\n\n\nSave a note by clicking the icon down left.\n\n                Share a note by clicking the icon down right.');
+        api.saveNote('shortcuts', 'Shortcuts\n\ncmd/ctrl-s        =  Saves the current document\n\ncmd/ctrl-z        =  Undo\n\ncmd/ctrl-y        =  Redo\n\ncmd/ctrl-1,2,3..  =  Activates the document at given index\n\ncmd/ctrl-.        =  Cycles active document left-to-right\n\ncmd/ctrl-,        =  Cycles active document right-to-left\n\n\n\nUse your browser to do the rest like copy/paste and zooming.')
     }
 
-	return app;
+	return api;
 })();
 
-app.init();
 
-
+/**
+ * jQuery toggleVisibility plugin
+ */
 (function( $ ) {
   $.fn.toggleVisibility = function() {
     if (this.css('visibility') == 'hidden'){

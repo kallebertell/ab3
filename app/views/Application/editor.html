@@ -1,4 +1,4 @@
-#{extends 'main.html' /} #{set title:'fnord' /}
+#{extends 'main.html' /} #{set title:'ab3' /}
 
 
 <script type="text/javascript">
@@ -9,7 +9,7 @@
 
         var viewModel = {
             notes : ko.observableArray(),
-            index : ko.observable(),
+            index : ko.observable(0),
 
 
             addViewNote : function (key, content) {
@@ -17,32 +17,50 @@
                 viewModel.notes.push(note);
                 viewModel[key] = note;
 
-                note.activate();
+                this.selectNote(key, true);
             },
 
             createNewNote : function (content) {
-                var key = app.addNote(content);
+                var key = ab3.addNote(content);
                 this.addViewNote(key, content);
             },
 
             removeNote : function(key) {
                 var idx = viewModel.index();
-                var noteIndex = app.getIndex(key);
+                var noteIndex = ab3.getIndex(key);
                 var currentNoteKey = viewModel.currentNote().key;
                 viewModel.notes.splice(noteIndex, 1);
-                app.removeNote(key);
+                ab3.removeNote(key);
 
+                if (this.notes().length < 1) {
+                    this.createNewNote('');
+                }
+                
                 if (currentNoteKey == key) {
-                  this.notes()[0].activate();
+                  this.selectNote(this.notes()[0].key, true);
                 } else {
-                  this.notes()[ app.getIndex(currentNoteKey) ].activate();
+                  this.selectNote( currentNoteKey, true );
                 }
             },
 
-            selectNote : function(key) {
+            selectNote : function(key, updateIndex) {
+                if (!key) {
+                    throw new Error('wtf: key == '+key);
+                }
                 this.deselectNotes();
-                this.index(app.getIndex(key));
-                if (editor) editor.setValue(this.currentContent());
+
+                this.index(ab3.getIndex(key));
+
+                if (updateIndex)
+                    ab3.updateIndex(this.index());
+
+                if (editor) {
+                    editor.setValue(this.currentContent());
+                    editor.clearHistory();
+                }
+
+                if (this.currentNote())
+                this.currentNote().selected(true);
             },
 
             deselectNotes : function() {
@@ -55,89 +73,74 @@
                 var idx = this.index() - 1;
                 var noteViewModel = this.notes()[idx];
                 if (!noteViewModel) noteViewModel = this.notes()[this.notes().length-1];
-                if (noteViewModel) noteViewModel.activate();
+                if (noteViewModel) this.selectNote( noteViewModel.key );
             },
 
             selectNextNote : function() {
                 var idx = this.index() + 1;
                 var noteViewModel = this.notes()[idx];
                 if (!noteViewModel) noteViewModel = this.notes()[0];
-                if (noteViewModel) noteViewModel.activate();
+                if (noteViewModel) this.selectNote( noteViewModel.key );
             },
 
             updateContentFromEditor: function(editor) {
                 editor.save();
                 viewModel.currentContent(editor.getValue());
-                return false;
             },
 
             // -------------------------------
             // Event Handlers
 
             focusInEditor: function(e) {
-                e.preventDefault();
                 if (editor) editor.focus();
-                return true;
             },
 
             saveCurrentDocument: function(e) {
-                e.preventDefault();
                 this.currentNote().save();
-                return true;
             },
 
             publishCurrentDocument: function(e) {
-                e.preventDefault();
                 publishCurrentNote();
-                return true;
             },
 
             addNoteHandler : function(e) {
-                e.preventDefault();
-                this.createNewNote(('' + new Date()).substring(16, 24));
-                return true;
+                this.createNewNote('');
             },
             
             keydownHandler: function(e) {
-                var usingShortcut = (e.ctrlKey && !app.isMac) || (e.metaKey && app.isMac && !e.ctrlKey);
+                var usingShortcut = (e.ctrlKey && !ab3.isMac) || (e.metaKey && ab3.isMac && !e.ctrlKey);
 
                 if (!usingShortcut) {
                     return true;
                 }
 
                  if (e.which == 188) {
-                    e.preventDefault();
                     this.selectPreviousNote();
-                    return true;
-                }
+                    return false;
+                 }
 
                 if (e.which == 190) {
-                    e.preventDefault();
                     this.selectNextNote();
-                    return true;
+                    return false;
                 }
 
                 if (e.which == 83) {
-                    e.preventDefault();
                     this.currentNote().save();
-                    return true;
+                    return false;
                 }
 
                 if (e.which == 84) {
                    viewModel.createNewNote('');
-                   e.preventDefault();
-                   return false;
+                    return false;
                 }
 
                 if (e.which >= 48 && e.which < 57) {
-                    e.preventDefault();
                     var idx = e.which == 48 ? 10 : e.which - 49;
                     var noteViewModel = this.notes()[idx];
-                    if (noteViewModel) noteViewModel.activate();
-                    return true;
+                    if (noteViewModel) this.selectNote( noteViewModel.key() );
+                    return false;
                 }
 
-                
                 return true;
             }
 
@@ -153,11 +156,11 @@
         }, viewModel);
 
         viewModel.title = ko.dependentObservable(function() {
-            return "note" + (this.currentNote() ? " | " + app.preview(this.currentNote().content(), true) : "");
+            return "ab3" + (this.currentNote() ? " | " + ab3.preview(this.currentNote().content(), true) : "");
         }, viewModel);
 
         viewModel.unescapedTitle = ko.dependentObservable(function() {
-             return "note" + (this.currentNote() ? " | " + app.preview(this.currentNote().content(), false) : "");
+             return "ab3" + (this.currentNote() ? " | " + ab3.preview(this.currentNote().content(), false) : "");
         }, viewModel);
 
         viewModel.currentContent = ko.dependentObservable({
@@ -181,67 +184,59 @@
         // Constructor to create Note View Models
 
         var NoteViewModel = function(key, content) {
-                this.key = key;
-                this.content = ko.observable(content);
-                this.isDirty = ko.observable(false);
-                this.selected = ko.observable(false);
-                this.hovering = ko.observable(false);
-                this.removeHovered = ko.observable(false);
+            this.key = key;
+            this.content = ko.observable(content);
+            this.isDirty = ko.observable(false);
+            this.selected = ko.observable(false);
+            this.hovering = ko.observable(false);
+            this.removeHovered = ko.observable(false);
 
-                this.title = ko.dependentObservable(function() {
-                    return (this.isDirty() ? '* ' : '') + app.preview(this.content());
-                }, this)
+            this.title = ko.dependentObservable(function() {
+                return (this.isDirty() ? '* ' : '') + ab3.preview(this.content());
+            }, this)
 
-                this.activate = function() {
-                    viewModel.selectNote(key);
-                    this.selected(true);
-                }
 
-                this.save = function() {
-                    app.saveNote(viewModel.currentNote().key, viewModel.currentNote().content());
-                    app.notify("Saved");
-                    this.isDirty(false);
-                }
 
-                // -------------------------------
-                // Event Handlers
-                this.select = function(e) {
-                    e.preventDefault();
-                    this.activate();
-                    return true;
-                };
-                this.remove = function(e) {
-                    viewModel.removeNote(this.key);
-                    return false;
-                };
-                this.hoverOnTab = function() {
-                    this.hovering(true);
-                };
-                this.hoverOffTab = function() {
-                    this.hovering(false);
-                };
+            this.save = function() {
+                ab3.saveNote(viewModel.currentNote().key, viewModel.currentNote().content());
+                ab3.notify("Saved");
+                this.isDirty(false);
+            }
 
-                this.hoverOnRemove = function() {
-                    this.removeHovered(true);
-                };
-                this.hoverOffRemove = function() {
-                    this.removeHovered(false);
-                };
-
+            // -------------------------------
+            // Event Handlers
+            this.select = function(e) {
+                viewModel.selectNote(this.key, true);
+            };
+            this.remove = function(e) {
+                viewModel.removeNote(this.key);
+            };
+            this.hoverOnTab = function() {
+                this.hovering(true);
+            };
+            this.hoverOffTab = function() {
+                this.hovering(false);
+            };
+            this.hoverOnRemove = function() {
+                this.removeHovered(true);
+            };
+            this.hoverOffRemove = function() {
+                this.removeHovered(false);
             };
 
+        };
 
-        // ----------------------------------------------------------
+
         // Helper functions
-        
-
         var publishCurrentNote = function() {
-            var form = $('<form action="@{Application.publishNote()}" method="post"><input type="hidden" name="content" value="' + viewModel.currentNote().content() + '"/> </form>');
+            var form = $('<form action="@{application.publishNote()}" method="post"><input type="hidden" name="content" value="' + viewModel.currentNote().content() + '"/> </form>');
             $('body').append(form);
             form.submit();
         };
 
 
+        // Custom binding handler for adding hover classes through knockouts binding syntax.
+        // Yeah I should be using tag:hover in css instead.
         ko.bindingHandlers.cssHover = {
               init: function(element, valueAccessor, allBindingsAccessor) {
                   var options = ko.utils.unwrapObservable(valueAccessor()),
@@ -252,14 +247,19 @@
                           function() { $(this).removeClass(classOff).addClass(classOn); },
                           function() { $(this).removeClass(classOn).addClass(classOff); });
             }
-            };
+        };
 
-        // ----------------------------------------------------------
+
+        // Initialize the ab3 api
+        ab3.init();
+
+
         // Initialize Note View Models from Data
-
-        var noteKeys = app.getNoteKeys();
+        var noteKeys = ab3.getNoteKeys();
+        var activeKey = ab3.getActiveKey();
+        
         for (var i in noteKeys) {
-            var content = app.loadNote(noteKeys[i]);
+            var content = ab3.loadNote(noteKeys[i]);
             viewModel.addViewNote(noteKeys[i], content);
         }
 
@@ -267,6 +267,10 @@
         ko.applyBindings(viewModel, window.document.body);
         ko.applyBindings(viewModel, window.document.head);
 
+        viewModel.selectNote( activeKey );
+
+        
+        // Create the CodeMirror text editor
         var editor = CodeMirror.fromTextArea(document.getElementById("editorArea"), {
             lineNumbers: false,
             matchBrackets: true,
@@ -278,6 +282,7 @@
 
         editor.focus();
 
+        // Enable twipsy hover texts
         $('.twisp').twipsy({delayOut:0, delayIn:0, live:true});
     });
 </script>
@@ -301,7 +306,7 @@
 <script id="noteTabTemplate" type="text/html">
     <li class="note-tab" data-bind="click: select, event: { mouseover: hoverOnTab, mouseleave: hoverOffTab }, css: { 'note-selected-tab' : selected() } ">
         <span class="note-tab-title" data-bind="html: title">Doc</span>
-        <span class="remove-note-tool icon-x" data-bind="click: remove, style: { visibility: hovering() ? 'visible' : 'hidden'}, css: { 'icon-x-hover': removeHovered() }, event: { mouseover: hoverOnRemove, mouseleave: hoverOffRemove }">&nbsp;</span>
+        <span class="remove-note-tool icon-x" data-bind="click: remove, style: { visibility: hovering() ? 'visible' : 'hidden'}, cssHover: { on : 'icon-x-hover', off: 'icon-x' }">&nbsp;</span>
     </li>
 </script>
 
