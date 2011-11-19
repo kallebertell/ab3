@@ -156,11 +156,11 @@
         }, viewModel);
 
         viewModel.title = ko.dependentObservable(function() {
-            return "ab3" + (this.currentNote() ? " | " + ab3.preview(this.currentNote().content(), true) : "");
+            return (this.currentNote() ? ab3.preview(this.currentNote().content(), true) : "ab3");
         }, viewModel);
 
         viewModel.unescapedTitle = ko.dependentObservable(function() {
-             return "ab3" + (this.currentNote() ? " | " + ab3.preview(this.currentNote().content(), false) : "");
+             return (this.currentNote() ? ab3.preview(this.currentNote().content(), false) : "ab3");
         }, viewModel);
 
         viewModel.currentContent = ko.dependentObservable({

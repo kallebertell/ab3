@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f2ed6d50-8c1b-4301-8a3c-5f7a3064dd21" name="Default" comment="" />
+    <list default="true" id="f2ed6d50-8c1b-4301-8a3c-5f7a3064dd21" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/favicon_old.ico" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/images/favicon.ico" afterPath="$PROJECT_DIR$/public/images/favicon.ico" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/Application/editor.html" afterPath="$PROJECT_DIR$/app/views/Application/editor.html" />
+    </list>
     <ignored path="notebook.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -53,7 +57,7 @@
       <file leaf-file-name="editor.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/Application/editor.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="82" column="69" selection-start="2749" selection-end="2749" vertical-scroll-proportion="1.2568306">
+            <state line="162" column="97" selection-start="5267" selection-end="5267" vertical-scroll-proportion="0.49391305">
               <folding />
             </state>
           </provider>
@@ -508,7 +512,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/Application/editor.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="82" column="69" selection-start="2749" selection-end="2749" vertical-scroll-proportion="1.2568306">
+        <state line="162" column="97" selection-start="5267" selection-end="5267" vertical-scroll-proportion="0.49391305">
           <folding />
         </state>
       </provider>
