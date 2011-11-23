@@ -273,7 +273,7 @@
         // Create the CodeMirror text editor
         var editor = CodeMirror.fromTextArea(document.getElementById("editorArea"), {
             lineNumbers: false,
-            matchBrackets: true,
+            matchBrackets: false,
             mode: "text/plain",
             onChange: function(editor) {
                 viewModel.updateContentFromEditor(editor);
