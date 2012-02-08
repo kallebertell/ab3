@@ -26,8 +26,6 @@ a {
 }
 
 .paper {
-    margin-top: -1px;
-    border-top: 1px solid #f6f6f6;
     padding: 20px;
     box-shadow: 0 0 20px #ccc;
     z-index: -100;
@@ -65,7 +63,6 @@ li.note-tab {
     margin-bottom: 0;
     display: inline-block;
     border-top-right-radius: 8px;
-    border-bottom: 1px solid white;
     box-shadow: 0 -3px 5px #f0f0f0;
     margin-left: 0;
     z-index: 12;
