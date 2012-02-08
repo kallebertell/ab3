@@ -12,8 +12,8 @@ a {
 
 .mainContent {
     margin: 0 auto;
+    max-width: 60em;
     width: 90%;
-    max-width: 50em;
     padding: 20px;
 }
 
