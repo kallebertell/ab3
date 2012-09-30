@@ -1,19 +1,8 @@
 package controllers;
 
-import java.io.IOException;
-import java.util.Date;
-import java.util.List;
-
 import models.Note;
-import play.Logger;
-import play.data.binding.As;
-import play.data.binding.Binder;
 import play.mvc.Controller;
-import utils.NoteJsonBinder;
 import utils.UidGenerator;
-
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
 
 public class Application extends Controller {
 
