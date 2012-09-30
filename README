@@ -1,0 +1,31 @@
+WHAT
+===========================================
+This is a small javascript based notedpad
+application called ab3. All your notes will
+be stored in the browser's local storage. 
+
+If you wish you can publish your note 
+online, in which it'll be public to 
+everyone
+
+
+TECH
+===========================================
+- Backend
+   - Java / Play framework 1.2.x
+- Frontend
+   - Javascript/html/css
+   - jQuery
+   - Knockout.js
+   - codemirror
+- Heroku hosting
+
+
+TRY
+===========================================
+There's a live version you can try here:
+http://ab3.co
+
+
+
+
